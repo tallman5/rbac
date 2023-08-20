@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather", "Weather\Weather.csproj", "{4C752C32-7BDA-441E-BD8C-9094C33E386D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Api", "Weather.Api\Weather.Api.csproj", "{2EF4F437-475F-42E4-8622-C25A46699758}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C752C32-7BDA-441E-BD8C-9094C33E386D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C752C32-7BDA-441E-BD8C-9094C33E386D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C752C32-7BDA-441E-BD8C-9094C33E386D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C752C32-7BDA-441E-BD8C-9094C33E386D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EF4F437-475F-42E4-8622-C25A46699758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EF4F437-475F-42E4-8622-C25A46699758}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EF4F437-475F-42E4-8622-C25A46699758}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EF4F437-475F-42E4-8622-C25A46699758}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {89980C5B-D830-42AC-9AF3-F0AB1D0B12E2}
+		SolutionGuid = {E25A21CF-2E1E-4F35-AED6-565EC3BB8BFA}
 	EndGlobalSection
 EndGlobal

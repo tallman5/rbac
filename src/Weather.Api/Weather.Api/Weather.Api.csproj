@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-Weather-c7dbaba1-2c12-4149-a3a7-ade7bb34afe2</UserSecretsId>
+    <UserSecretsId>aspnet-Weather.Api-e71e7a1b-ecf7-4b79-aa65-f49180bec861</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
