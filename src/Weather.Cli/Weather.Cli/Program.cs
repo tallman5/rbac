@@ -26,7 +26,7 @@ using var httpClient = new HttpClient();
 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authenticationResult.AccessToken);
 foreach (var method in methods)
 {
-    var url = $"https://localhost:7063/WeatherForecast/{method}";
+    var url = $"https://localhost:7032/WeatherForecast/{method}";
     try
     {
         var httpResponseMessage = httpClient.GetAsync(url).Result;
