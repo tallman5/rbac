@@ -1,38 +1,35 @@
 import * as React from "react"
 import { useMsal } from '@azure/msal-react';
 import { loginRequest, scopes } from "../authConfig";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import jwt_decode from "jwt-decode";
 
 const IndexPage = () => {
   const { accounts, instance } = useMsal();
   const [tokenRaw, setTokenRaw] = useState('');
   const [tokenDecoded, setTokenDecoded] = useState('');
-  const [anonRes, setAnonRes] = useState('');
-  const [authRes, setAuthRes] = useState('');
-  const [authAdimRes, setAuthAdminRes] = useState('');
-  const [authDeviceRes, setAuthDeviceRes] = useState('');
 
   const handleLogin = () => {
     instance.loginPopup(loginRequest)
       .then((response) => {
         console.log(response);
-        if (response.account) {
-          const accessTokenRequest = {
-            scopes,
-            account: response.account,
-          };
-
-          instance.acquireTokenSilent(accessTokenRequest)
-            .then((accessTokenResponse) => {
-              console.log(accessTokenResponse);
-              setTokenRaw(accessTokenResponse.accessToken);
-              setTokenDecoded(jwt_decode(accessTokenResponse.accessToken));
-            });
-        }
       })
       .catch((e) => {
         console.log(e);
+      });
+  }
+
+  const aquireToken = () => {
+    const accessTokenRequest = {
+      scopes,
+      account: accounts[0]
+    };
+
+    instance.acquireTokenSilent(accessTokenRequest)
+      .then((accessTokenResponse) => {
+        console.log(accessTokenResponse);
+        setTokenRaw(accessTokenResponse.accessToken);
+        setTokenDecoded(jwt_decode(accessTokenResponse.accessToken));
       });
   }
 
@@ -87,10 +84,7 @@ const IndexPage = () => {
 
   const clearData = () => {
     setTokenRaw('');
-    setAnonRes('');
-    setAuthRes('');
-    setAuthAdminRes('');
-    setAuthDeviceRes('');
+    setTokenDecoded('');
   }
 
   return (
@@ -100,6 +94,8 @@ const IndexPage = () => {
         <button type="button" onClick={() => { handleLogin() }} disabled={(accounts && accounts.length > 0)}>Sign In</button>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" onClick={() => { handleLogout() }} disabled={!(accounts && accounts.length > 0)}>Sign Out</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" onClick={() => { aquireToken() }} disabled={!(accounts && accounts.length > 0)}>Aquire Access Token</button>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" onClick={() => { callApis() }}>Call APIs</button>
       </div>
@@ -118,11 +114,13 @@ const IndexPage = () => {
       <div>
         <h2>Access Token Raw:</h2>
         <div>
-          {
-            (accounts && accounts.length > 0)
-              ? tokenRaw
-              : 'Not signed in'
-          }
+          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+            {
+              (accounts && accounts.length > 0)
+                ? tokenRaw
+                : 'Not signed in'
+            }
+          </pre>
         </div>
       </div>
       <br />
@@ -133,6 +131,17 @@ const IndexPage = () => {
             (accounts && accounts.length > 0)
               ? JSON.stringify(tokenDecoded, null, 2)
               : 'Not signed in'
+          }
+        </pre>
+      </div>
+      <br />
+      <div>
+        <h2>Access Token Roles:</h2>
+        <pre>
+          {
+            (tokenDecoded?.roles?.length > 0)
+              ? JSON.stringify(tokenDecoded.roles, null, 2)
+              : 'No Access Token or Roles'
           }
         </pre>
       </div>
